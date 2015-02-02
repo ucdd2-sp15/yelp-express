@@ -1,0 +1,11 @@
+extends layout
+
+// TODO: use the better template from the hackathon
+block content
+    - var item = doctor
+    h3= item.name
+    div.row
+        div.one.column city
+        div.three.columns= item.city
+        div.one.column state
+        div.three.columns= item.state
