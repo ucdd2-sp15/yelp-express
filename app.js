@@ -10,7 +10,7 @@ var tips = require('./data/tips.json')
 
 // use jade as the view engine
 app.set('view engine', 'jade');
-
+// Hosting
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
