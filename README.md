@@ -11,4 +11,4 @@
     $ node app.js
 
 # View
-    Available at ```http://localhost:3000/list/restaurants```
+    Available at http://localhost:3000/list/restaurants
