@@ -74,6 +74,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
+/*
 var server = app.listen(3000, function() {
 
     var host = server.address().address
@@ -81,3 +82,8 @@ var server = app.listen(3000, function() {
 
     console.log('App listening at http://%s:%s', host, port)
 })
+*/
+// when on Heroku, port will be exported to an environment variable
+// // and available as process.env.PORT
+ var port = process.env.PORT || 3000;
+ app.listen(port);
