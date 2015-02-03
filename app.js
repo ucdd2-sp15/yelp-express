@@ -10,7 +10,7 @@ var tips = require('./data/tips.json')
 
 // use jade as the view engine
 app.set('view engine', 'jade');
-
+// Hosting
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
@@ -56,8 +56,7 @@ app.get('/view/restaurant/:business_id', function(req, res) {
 })
 
 app.get('/view/doctor/:business_id', function(req, res) {
-    // TODO: lookup a doctor by a business_id
-    var doctor = doctors[0]
+    var doctor = _.find(doctors, {'business_id' : req.params.business_id})
     res.render('viewDoctor.jade', {
         doctor: doctor
     })
@@ -75,7 +74,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
-var server = app.listen(3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
 
     var host = server.address().address
     var port = server.address().port
