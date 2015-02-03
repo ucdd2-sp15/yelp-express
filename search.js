@@ -40,6 +40,7 @@ module.exports = function(app) {
 
         var rs = _.filter(restaurants, function(r){
             if(r.attributes['Ambience']){
+                console.log('yay');
                 return r.attributes.Ambience[x];
             }
         })
@@ -113,6 +114,7 @@ module.exports = function(app) {
         if(ambience){
             var rs = _.filter(rs, function(r){
                 if(r.attributes['Ambience']){
+                    console.log('yay');
                     return r.attributes.Ambience[ambience];
                 }
             })
