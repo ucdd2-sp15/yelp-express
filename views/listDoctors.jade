@@ -1,13 +1,21 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
-    each item in doctors
-        div.row
-            div.eight.columns
-                // TODO: fix the hardcoded link
-                a(href='/view/doctor/vcNAWiLM4dR7D2nwwJ7nCA')
-                    = item.name
-            div.four.columns
-                if (item.attributes["By Appointment Only"])
-                    | By Appointment Only
+	div.row
+		div.four.columns
+			br
+		div.six.columns
+			br
+			h2="Doctors"
+			br
+	each item in doctors
+		div.row
+			div.two.columns
+				img(src='./data/images/doctor.png')
+			div.three.columns
+				a(href='/view/doctor/'+item.business_id)
+					= item.name
+			div.three.columns
+				=item.city +', '+item.state
+			div.three.columns(style='color: red')
+				= item.stars+ " Stars"

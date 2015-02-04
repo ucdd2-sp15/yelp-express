@@ -1,11 +1,36 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = doctor
-    h3= item.name
-    div.row
-        div.one.column city
-        div.three.columns= item.city
-        div.one.column state
-        div.three.columns= item.state
+	- var item = doctor
+	br
+	br
+	h3(style='text-align: center')= item.name
+	div.row(style='text-align: center')
+		img(src='images/doctor.png')
+	h5(style='text-align: center ; color: red')
+		= item.stars+ " Stars"	
+	br
+	br
+	div.raw
+		div.column.five
+			="Categories:  "+item.categories
+	br
+	div.raw
+		div.column.three
+			if (item.open)
+				| Open
+			else
+				| Closed
+		div.column.three
+			if (item.attributes["By Appointment Only"])
+				| By Appointment Only
+	br
+	br
+	br
+	div.raw
+		div.column.three
+			=item.city+','+ item.state
+	div.raw
+		div.column.four
+			="Full Address: "+item.full_address
+
