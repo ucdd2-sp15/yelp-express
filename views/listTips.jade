@@ -7,14 +7,13 @@ block content
 			th Categories
 			th Reviews
 		tbody
-	each item in tips
-		div.row
-			tr
-				td= "Food"
-				td
-					b
-						//a(href='/view/tip/JwUE5GmEO-sH1FuwJgKBlQ/Vefj29mjork1DLhALLNAsg/')
-						a(href='/view/tip/item.business_id/item.user_id/')
-							= item.text
-					br
+		each item in tips
+			div.row
+				tr
+					td= "Food"
+					td
+						b
+							a(href='/view/tip/' + item.business_id + '/' + item.user_id)
+								= item.text
+						br
 			// TODO: fix the hardcoded link
