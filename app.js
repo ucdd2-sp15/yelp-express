@@ -50,7 +50,7 @@ app.get('/view/user/:user_id', function(req, res) {
 
 app.get('/view/restaurant/:business_id', function(req, res) {
     // TODO: lookup a restaurant by a business_id
-    var restaurant = restaurants[0]
+    var restaurant = _.find(restaurants, {'business_id' : req.params.business_id})
     res.render('viewRestaurant.jade', {
         restaurant: restaurant
     })
@@ -58,7 +58,7 @@ app.get('/view/restaurant/:business_id', function(req, res) {
 
 app.get('/view/doctor/:business_id', function(req, res) {
     // TODO: lookup a doctor by a business_id
-    var doctor = doctors[0]
+    var doctor = _.find(doctors, {'business_id' : req.params.business_id})
     res.render('viewDoctor.jade', {
         doctor: doctor
     })
@@ -66,7 +66,7 @@ app.get('/view/doctor/:business_id', function(req, res) {
 
 app.get('/view/tip/:business_id/:user_id', function(req, res) {
     // TODO: lookup a tip by both the business_id and the user_id
-    var tip = tips[0]
+    var tip = _.find(tips, {'business_id' : req.params.business_id,'user_id' : req.params.user_id })
     res.render('viewTip.jade', {
         tip: tip
     })

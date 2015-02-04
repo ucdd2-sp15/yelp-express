@@ -5,5 +5,5 @@ block content
     each item in tips
         div.row
             // TODO: fix the hardcoded link
-            a(href='/view/tip/JwUE5GmEO-sH1FuwJgKBlQ/Vefj29mjork1DLhALLNAsg/')
+            a(href='/view/tip/'+ item.business_id +'/'+ item.user_id )
                 = item.text
