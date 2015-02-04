@@ -41,7 +41,8 @@ app.get('/list/tips', function(req, res) {
 app.get('/view/user/:user_id', function(req, res) {
     // TODO: lookup a user by a user_id
     // hint: use lodash's find function to look up a user by user_id
-    var user = users[0]
+    var object={'user_id': req.param("user_id")}
+    var user= _.find(users, object)
     res.render('viewUser.jade', {
         user: user
     })
