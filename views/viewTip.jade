@@ -3,9 +3,12 @@ extends layout
 // TODO: use the better template from the hackathon
 block content
     - var item = tip
-    div.row
-        div.one.column Tip
-        div.elevent.columns= item.text
-    div.row
-        div.one.column By
-        div.four.column= item.user_id
+    table.u-full-width
+      thead
+        tr
+          th Tip
+          th By whom?
+      tbody
+        tr
+          td= item.text
+          td= item.user_id
