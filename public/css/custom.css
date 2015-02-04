@@ -19,6 +19,9 @@ img {
 	padding: 2px;
 }
 
-.padded {
+.paddedBig {
 	padding-left: 250px;
+}
+.paddedSmall {
+	padding-left: 150px;
 }
