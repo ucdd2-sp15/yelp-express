@@ -10,6 +10,7 @@ block content
         each item in users
             tr
                 td(width="70%")
+                   b
                     a(href='/view/user/' + item.user_id)
                       = item.name
                 td= item.review_count
