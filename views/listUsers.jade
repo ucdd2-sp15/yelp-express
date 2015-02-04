@@ -1,8 +1,19 @@
 extends layout.jade
-
-// TODO: use the better template from the hackathon
 block content
-    each item in users
-        div.row
-            a(href='/view/user/' + item.user_id)
-                = item.name
+    div.blue-container
+        div.white-container
+            table.u-full-width
+                thead
+                    tr
+                        th Name
+                        th Review Count
+                        th Fans
+                        th Average Stars
+                tbody
+                    each item in users
+                        tr
+                            td
+                                a(href='/view/user/' + item.user_id) #{item.name}
+                            td= item.review_count
+                            td= item.fans
+                            td= item.average_stars
