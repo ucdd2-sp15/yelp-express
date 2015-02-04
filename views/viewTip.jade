@@ -3,11 +3,11 @@ extends layout
 // TODO: use the better template from the hackathon
 block content
 	- var item = tip
-	div.four.columns #{item.business_id}
+	div.four.columns #{item.business_name}
 	div#example-grid
 		div.eight.columns= item.text 
 			br
-			span.paddedBig - #{item.user_id}
+			span.paddedBig - #{item.name}
 			br
 			span.paddedBig #{item.date}
 			span.paddedSmall likes #{item.likes}
