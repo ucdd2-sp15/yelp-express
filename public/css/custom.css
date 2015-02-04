@@ -18,3 +18,10 @@ img {
 	border: 1px #aaa solid;
 	padding: 2px;
 }
+
+.paddedBig {
+	padding-left: 250px;
+}
+.paddedSmall {
+	padding-left: 150px;
+}
