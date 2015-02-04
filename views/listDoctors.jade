@@ -9,7 +9,8 @@ block content
     each item in doctors
         div.row
             div.five.columns
-               a(href='/view/doctor/' + item.business_id)
+               // TODO: fix the hardcoded link
+               a(href='/view/doctor/'+item.business_id)
                     = item.name
             div.two.columns
                 if item.open
@@ -21,4 +22,3 @@ block content
                     |Y
                 else
                     |N
-
