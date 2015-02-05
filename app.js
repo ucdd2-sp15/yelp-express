@@ -13,6 +13,7 @@ app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/list/restaurants', function(req, res) {
     res.render('listRestaurants.jade', {
@@ -53,8 +54,11 @@ app.get('/view/restaurant/:business_id', function(req, res) {
 })
 
 app.get('/view/doctor/:business_id', function(req, res) {
-    // TODO: lookup a doctor by a business_id
-    var doctor = doctors[0]
+    var doctor = _.find(doctors,
+    {
+        "business_id": req.params.business_id
+    }
+    );
     res.render('viewDoctor.jade', {
         doctor: doctor
     })
