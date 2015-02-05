@@ -12,6 +12,7 @@ var tips = require('./data/tips.json')
 app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
+
 app.use(express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -40,8 +41,6 @@ app.get('/list/tips', function(req, res) {
 })
 
 app.get('/view/user/:user_id', function(req, res) {
-    // TODO: lookup a user by a user_id
-    // hint: use lodash's find function to look up a user by user_id
     var user = users[0]
     res.render('viewUser.jade', {
         user: user
@@ -49,7 +48,6 @@ app.get('/view/user/:user_id', function(req, res) {
 })
 
 app.get('/view/restaurant/:business_id', function(req, res) {
-    // TODO: lookup a restaurant by a business_id
     var restaurant = restaurants[0]
     res.render('viewRestaurant.jade', {
         restaurant: restaurant
@@ -79,7 +77,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
-var server = app.listen(3000, function() {
+var server = app.listen((process.env.PORT || 3000), function() {
 
     var host = server.address().address
     var port = server.address().port
