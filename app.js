@@ -13,6 +13,7 @@ app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/list/restaurants', function(req, res) {
     res.render('listRestaurants.jade', {
