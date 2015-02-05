@@ -12,6 +12,7 @@ var tips = require('./data/tips.json')
 app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
+app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/list/restaurants', function(req, res) {
