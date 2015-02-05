@@ -1,11 +1,30 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = restaurant
-    h3= item.name
-    div.row
-        div.one.column city
-        div.three.columns= item.city
-        div.one.column state
-        div.three.columns= item.state
+	// display the detail of the first item
+	- var item = restaurant
+	div.twelve.columns.indonecell
+		div.onerow
+			div.indnamepiece
+				h5= item.name
+			div.starpiece
+				h5= item.stars + " stars"
+		div.onerow
+			div.hourpiece
+				each day, dayName in item.hours
+					div.onerow
+						= dayName + " "
+						= day.open + "-"
+						= day.close
+		div.onerow
+			div.addresspiece
+				= item.full_address
+		div.onerow
+			div.openpiece
+				= "Is this place open?  " + item.open + "!"
+		div.onerow
+			div.reviewpiece
+				= "Review Count: " + item.review_count
+		div.onerow
+			img(src="design/cwk.JPG")
+

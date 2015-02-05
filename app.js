@@ -39,8 +39,6 @@ app.get('/list/tips', function(req, res) {
 })
 
 app.get('/view/user/:user_id', function(req, res) {
-    // TODO: lookup a user by a user_id
-    // hint: use lodash's find function to look up a user by user_id
     var user = users[0]
     res.render('viewUser.jade', {
         user: user
@@ -48,7 +46,6 @@ app.get('/view/user/:user_id', function(req, res) {
 })
 
 app.get('/view/restaurant/:business_id', function(req, res) {
-    // TODO: lookup a restaurant by a business_id
     var restaurant = restaurants[0]
     res.render('viewRestaurant.jade', {
         restaurant: restaurant
