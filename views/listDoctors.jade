@@ -3,12 +3,24 @@ extends layout.jade
 block content
     div.blue-container
         div.white-container
-            each item in doctors    
-                div.row
-                    div.eight.columns
-                        a(href='/view/doctor/' + item.business_id)
-                            = item.name
-                    div.four.columns
-                        if (item.attributes["By Appointment Only"])
-                            | By Appointment Only
-
+            table.u-full-width
+                thead
+                    tr
+                        th Name
+                        th State
+                        th City
+                        th Rating
+                        th Open
+                tbody
+                each item in doctors
+                    tr
+                        td
+                            a(href='/view/doctor/' + item.business_id)
+                                = item.name
+                        td= item.state
+                        td= item.city
+                        td= item.stars + " Stars"
+                        if item.open
+                            td= "Open"
+                        else
+                            td= "Closed"

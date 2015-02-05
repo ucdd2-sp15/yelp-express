@@ -67,8 +67,16 @@ app.get('/view/doctor/:business_id', function(req, res) {
 app.get('/view/tip/:business_id/:user_id', function(req, res) {
     // TODO: lookup a tip by both the business_id and the user_id
     var tip = _.find(tips, {'business_id' : req.params.business_id,'user_id' : req.params.user_id })
+    var business = _.find(doctors, {'business_id' : req.params.business_id})
+    var business_type = "doctor"
+    if (!business) {
+        business = _.find(restaurants, {'business_id' : req.params.business_id})
+        business_type = "restaurant"
+    }
     res.render('viewTip.jade', {
-        tip: tip
+        tip: tip,
+        business: business,
+        business_type: business_type
     })
 })
 
