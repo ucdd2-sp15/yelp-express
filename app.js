@@ -12,7 +12,7 @@ var tips = require('./data/tips.json')
 app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
-app.set('port', (process.env.PORT || 5000));
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/list/restaurants', function(req, res) {
@@ -76,7 +76,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
-var server = app.listen(3000, function() {
+var server = app.listen((process.env.PORT || 3000), function() {
 
     var host = server.address().address
     var port = server.address().port
