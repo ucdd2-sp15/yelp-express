@@ -3,6 +3,9 @@ extends layout
 // TODO: use the better template from the hackathon
 block content
     - var item = user
-    h3= item.name
-    div.row
-        div.three.columns= item.name
+    if (!item)
+      h3 No Matching User :(
+    else
+        h3= item.name
+        div.row
+            div.three.columns= item.name
