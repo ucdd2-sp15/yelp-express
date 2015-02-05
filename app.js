@@ -76,7 +76,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
-var server = app.listen((process.env.Port || 3000), function() {
+var server = app.listen((process.env.PORT || 3000), function() {
 
     var host = server.address().address
     var port = server.address().port
