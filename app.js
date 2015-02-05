@@ -41,7 +41,7 @@ app.get('/list/tips', function(req, res) {
 app.get('/view/user/:user_id', function(req, res) {
     // TODO: lookup a user by a user_id
     // hint: use lodash's find function to look up a user by user_id
-    var user = _.find(users, {'user_id': req.params.user_id}); 
+    var user = _.find(users, {'user_id': req.params.user_id});
     res.render('viewUser.jade', {
         user: user
     })
@@ -76,7 +76,7 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
-var server = app.listen(3000, function() {
+var server = app.listen((process.env.port || 3000), function() {
 
     var host = server.address().address
     var port = server.address().port
