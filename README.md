@@ -1,5 +1,7 @@
 # yelp-express
 
+# EXTRA CREDIT: View at
+    Available at https://yelp-express-db.herokuapp.com/list/restaurants
 
 # Install
 
@@ -10,5 +12,3 @@
 
     $ node app.js
 
-# View
-    Available at http://localhost:3000/list/restaurants
