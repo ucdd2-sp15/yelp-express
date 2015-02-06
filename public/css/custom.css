@@ -53,3 +53,15 @@ h5.inline {
 .right-side {
 	float: right;
 }
+
+.quote-text {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1.6em;
+    margin: 0 auto;
+    width:80%;
+}
+
+.quote-position {
+    text-align: center;
+    margin-bottom: -0.1em;
+}
