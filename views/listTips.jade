@@ -1,8 +1,15 @@
 extends layout.jade
 
 block content
-    each item in tips
-        div.row
-            
-            a(href='/view/tip/'+item.business_id+'/'+item.user_id)
-                = item.text
+	div.row
+		div.five.columns
+			br
+		div.six.columns
+			br
+			h3="Tips"
+	each item in tips
+		div.row     
+			a(href='/view/tip/'+item.business_id+'/'+item.user_id)
+				= item.text
+
+

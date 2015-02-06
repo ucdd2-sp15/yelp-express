@@ -1,7 +1,20 @@
 extends layout.jade
 
 block content
-    each item in users
-        div.row
-            a(href='/view/user/' + item.user_id)
-                = item.name
+	div.row
+		div.five.columns
+			br
+		div.six.columns
+			br
+			h3="Users"
+			br
+	each item in users
+		div.row
+			div.four.columns 
+				br   
+			div.two.columns
+				img(src='/images/user_list.png')
+			div.four.columns
+				a(href='/view/user/'+item.user_id)
+					= item.name
+			

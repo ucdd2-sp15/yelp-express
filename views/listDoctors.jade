@@ -6,16 +6,16 @@ block content
 			br
 		div.six.columns
 			br
-			h2="Doctors"
+			h3="Doctors"
 			br
 	each item in doctors
 		div.row
 			div.two.columns
-				img(src='./data/images/doctor.png')
-			div.three.columns
+				img(src='/images/doctor_list.png')
+			div.four.columns
 				a(href='/view/doctor/'+item.business_id)
-					= item.name
+					h5= item.name
 			div.three.columns
 				=item.city +', '+item.state
-			div.three.columns(style='color: red')
+			div.two.columns(style='color: red;font-weight:bold')
 				= item.stars+ " Stars"

@@ -7,8 +7,11 @@ var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
+ 
+app.use(express.static(__dirname + '/public'));
 
-// use jade as the view engine
+// Read the file and send to the callback
+ // Write the callback function
 app.set('view engine', 'jade');
 
 // set where the static contents are (e.g., css, js)
@@ -48,10 +51,12 @@ app.get('/view/user/:user_id', function(req, res) {
 })
 
 app.get('/view/restaurant/:business_id', function(req, res) {
-    // TODO: lookup a restaurant by a business_id
+    // TODO: lookup a restaurant by a business_id	
     var restaurant =_.find(restaurants, { 'business_id': req.params.business_id })
+	
     res.render('viewRestaurant.jade', {
-        restaurant: restaurant
+        restaurant: restaurant			
+		,users : users, tips: tips
     })
 })
 
@@ -59,7 +64,9 @@ app.get('/view/doctor/:business_id', function(req, res) {
     // TODO: lookup a doctor by a business_id
     var doctor =_.find(doctors, { 'business_id': req.params.business_id })
     res.render('viewDoctor.jade', {
-        doctor: doctor
+        doctor: doctor,
+        users: users,
+        tips: tips
     })
 })
 
