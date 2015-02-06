@@ -48,8 +48,7 @@ app.get('/view/user/:user_id', function(req, res) {
 })
 
 app.get('/view/restaurant/:business_id', function(req, res) {
-    // TODO: lookup a restaurant by a business_id
-    var restaurant = restaurants[0]
+    var restaurant = _.find(restaurants, {'business_id' : req.params.business_id})
     res.render('viewRestaurant.jade', {
         restaurant: restaurant
     })
