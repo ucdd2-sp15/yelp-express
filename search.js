@@ -94,9 +94,34 @@ module.exports = function(app) {
         var ambience = req.query.ambience    
         
         console.log('req.query: ', req.query)    
-        
-        // // TODO: lookup restaurants with the given query parameters
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
+       
+        var rs = restaurants
+
+        if (name){
+            var rs = _.filter(rs, function(restaurant){
+                if (_.contains(restaurant['name'], name)) return true
+            })
+        }
+
+        if (ambience){
+            var rs = _.filter(rs, function(restaurant){
+                if (restaurant['attributes']['Ambience']) {
+                    return restaurant['attributes']['Ambience'][ambience];
+                }
+            })
+        }
+
+        if (category){
+            var rs = _.filter(rs, function(restaurant){
+                if (_.contains(restaurant['categories'], category)) return true
+            })
+        }
+
+        if (minStars){
+            var rs = _.filter(rs, function(restaurant){
+                if (restaurant.stars >= minStars) return true
+            })
+        }
 
         res.render('listRestaurants.jade', {
             restaurants: rs
