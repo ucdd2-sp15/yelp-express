@@ -17,20 +17,20 @@ module.exports = function(app) {
     app.get('/search/restaurants/name/has/:keyword', function(req, res) {
         var keyword = req.params.keyword
 
-
-        // TODO: lookup restaurants whose names contain the given keyword
-        var rs =_.find(restaurants, {'star': keyword })
-
+        var rs =_.filter(restaurants, function(chr) { return chr.name.indexOf(keyword) > -1; });
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
     })
-
-    app.get('/search/restaurants/good/for/:x', function(req, res) {
+        // TODO: lookup restaurants whose names contain the given keyword
+    
+	app.get('/search/restaurants/good/for/:x', function(req, res) {
         var x = req.params.x
 
-        // TODO: lookup restaurants good for  :x
-        var rs = [restaurants[1], restaurants[2]] // hardcoded fake results
+        // TODO: lookup restaurants good for  :
+        var rs = _.filter(restaurants, function(chr){ if (chr.attributes['Good For'] != undefined) {
+return chr.attributes['Good For'][x]};});
+
 
         res.render('listRestaurants.jade', {
             restaurants: rs
@@ -41,8 +41,9 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants has ambience of :x
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
-
+        var rs = _.filter(restaurants, function(chr){if (chr.attributes.Ambience != undefined){
+		return chr.attributes.Ambience[x]};
+		});
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
@@ -52,8 +53,10 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants belonging to category :x
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
-
+        var rs = _.filter(restaurants, function(chr){for( cat in chr.categories){ console.log(chr.categories[cat])
+				if (chr.categories[cat] == x){
+				return true} ;}});
+		console.log(rs)
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
