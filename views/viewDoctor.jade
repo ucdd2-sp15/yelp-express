@@ -1,11 +1,58 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = doctor
-    h3= item.name
-    div.row
-        div.one.column city
-        div.three.columns= item.city
-        div.one.column state
-        div.three.columns= item.state
+	- var item = doctor
+	- var usersJade = users
+	- var tipsJade = tips
+	br
+	br
+	div#example-grid
+		div.row
+			div.three.columns 
+				img(src='/images/doctor_view.png')
+			br
+			h3(style='text-align: center')= item.name
+			h5(style='text-align: center;color: green')=item.city+','+ item.state
+			h6(style='text-align: center;color: red; font-weight:bold')='*** '+item.stars+' Stars'+' *** '
+
+			div.nine.columns(style='text-align: center')
+				div.row
+					div.three.columns 
+						b Categories :
+					div.nine.columns
+						=item.categories[0]+" , "+item.categories[1]
+				div.row
+					div.three.columns
+						b Reservations :
+					div.three.columns(style='color: green')
+						if (item.open)
+							b| Open
+						else
+							b| Closed
+					div.six.columns 
+						if (item.attributes["By Appointment Only"])
+							| By Appointment Only
+						else 
+							| --
+				div.row
+					div.three.columns
+						b Full Address : 
+					div.nine.columns
+						=item.full_address
+	br
+	br
+
+	h4(style = 'text-align: center; opacity: .5') Reviews
+	each user,i in usersJade
+		each tip,j in tipsJade 
+			if i === j
+				div.row
+					div.four.columns
+						p #{user.name} 
+					div.four.columns
+						p #{tip.text}
+					div.four.columns(style = 'color:black')
+						h4 &#10029&#10029&#10029
+
+
+	

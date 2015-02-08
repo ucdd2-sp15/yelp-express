@@ -1,0 +1,87 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/abebetayachow/.nvm/v0.10.30/bin/node',
+1 verbose cli   '/Users/abebetayachow/.nvm/v0.10.30/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt@VERSION',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.30
+4 warn package.json yelp-express@1.0.0 No description
+5 warn package.json yelp-express@1.0.0 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'grunt@VERSION', null ]
+8 verbose cache add name=undefined spec="grunt@VERSION" args=["grunt@VERSION",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'grunt@VERSION',
+9 verbose parsed url   path: 'grunt@VERSION',
+9 verbose parsed url   href: 'grunt@VERSION' }
+10 verbose cache add name="grunt" spec="VERSION" args=["grunt","VERSION"]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'VERSION',
+11 verbose parsed url   path: 'VERSION',
+11 verbose parsed url   href: 'VERSION' }
+12 verbose addNamed [ 'grunt', 'VERSION' ]
+13 verbose addNamed [ null, null ]
+14 silly lockFile 479b13a9-grunt-VERSION grunt@VERSION
+15 verbose lock grunt@VERSION /Users/abebetayachow/.npm/479b13a9-grunt-VERSION.lock
+16 info addNameTag [ 'grunt', 'VERSION' ]
+17 verbose request where is /grunt
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id c7923a42409d2960
+20 verbose url raw /grunt
+21 verbose url resolving [ 'https://registry.npmjs.org/', './grunt' ]
+22 verbose url resolved https://registry.npmjs.org/grunt
+23 verbose request where is https://registry.npmjs.org/grunt
+24 info trying registry request attempt 1 at 17:40:04
+25 verbose etag "1RPD44HJ9O7QP3MBSQ9H2TQG1"
+26 http GET https://registry.npmjs.org/grunt
+27 http 304 https://registry.npmjs.org/grunt
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Sat, 07 Feb 2015 00:40:04 GMT',
+28 silly registry.get     server: 'Apache',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'last-modified': 'Sat, 07 Feb 2015 00:39:07 GMT',
+28 silly registry.get     'cache-control': 'max-age=60',
+28 silly registry.get     etag: '"1RPD44HJ9O7QP3MBSQ9H2TQG1"',
+28 silly registry.get     age: '56',
+28 silly registry.get     'x-served-by': 'cache-sjc3135-SJC',
+28 silly registry.get     'x-cache': 'HIT',
+28 silly registry.get     'x-cache-hits': '2',
+28 silly registry.get     'x-timer': 'S1423269604.253367,VS0,VE0',
+28 silly registry.get     vary: 'Accept',
+28 silly registry.get     'content-length': '0',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 verbose etag https://registry.npmjs.org/grunt from cache
+30 silly lockFile 479b13a9-grunt-VERSION grunt@VERSION
+31 silly lockFile 479b13a9-grunt-VERSION grunt@VERSION
+32 error notarget No compatible version found: grunt@'VERSION'
+32 error notarget Valid install targets:
+32 error notarget ["0.1.0","0.1.1","0.1.2","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.2.5","0.2.6","0.2.7","0.2.8","0.2.9","0.2.10","0.2.11","0.2.12","0.2.13","0.2.14","0.2.15","0.3.0","0.3.1","0.3.2","0.3.3","0.3.4","0.3.5","0.3.6","0.3.7","0.3.8","0.3.9","0.3.10","0.3.11","0.3.12","0.3.13","0.3.14","0.3.15","0.3.16","0.3.17","0.4.0","0.4.1","0.4.2","0.4.3","0.4.4","0.4.5","0.3.13-a","0.4.0-a","0.4.0-rc1","0.4.0-rc2","0.4.0-rc3","0.4.0-rc4","0.4.0-rc5","0.4.0-rc6","0.4.0-rc7","0.4.0-rc8"]
+32 error notarget
+32 error notarget This is most likely not a problem with npm itself.
+32 error notarget In most cases you or one of your dependencies are requesting
+32 error notarget a package version that doesn't exist.
+33 error System Darwin 14.1.0
+34 error command "/Users/abebetayachow/.nvm/v0.10.30/bin/node" "/Users/abebetayachow/.nvm/v0.10.30/bin/npm" "install" "grunt@VERSION" "--save-dev"
+35 error cwd /Users/abebetayachow/Desktop/yelp-express
+36 error node -v v0.10.30
+37 error npm -v 1.4.21
+38 error code ETARGET
+39 verbose exit [ 1, true ]
