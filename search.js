@@ -19,7 +19,7 @@ module.exports = function(app) {
 
 
         // TODO: lookup restaurants whose names contain the given keyword
-        var rs =_.find(restaurants, {'stars': 4 })
+        var rs =_.find(restaurants, {'star': keyword })
 
         res.render('listRestaurants.jade', {
             restaurants: rs
