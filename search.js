@@ -101,13 +101,55 @@ module.exports = function(app) {
         var name = req.query.name
         var minStars = req.query.minStars
         var category = req.query.category
-        var ambience = req.query.ambience    
+        var ambience = req.query.ambience   
         
-        console.log('req.query: ', req.query)    
+        var nQuery = {'name': req["query"]["name"], 
+                      'stars': + minStars,
+                      'attributes':
+                        {'Good For':
+                            {req["query"]["category"]: true}
+                        },
+                       'Ambience':
+                            {req["query"]["ambience"]: true}
+        }
+        console.log('req.query: ', nQuery);    
+        var rs = _.filter(restaurants, nQuery);
         
-        // // TODO: lookup restaurants with the given query parameters
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
-
+        // TODO: lookup restaurants with the given query parameters
+        //var f1 = function (filtered0, pram){
+        //    return _.filter(filtered0, function (key, pram) {
+        //        console.log(key["name"]);
+        //        console.log(pram);
+        //        return key["name"] == name});
+        //    }
+        //var f2 = function (filtered1) {
+        //    console.log(filtered1);
+        //    if (minStars == undefined) return filtered1;
+        //    else
+        //    return _.filter(filtered1, function (key) {return key.stars > minStars});
+        // }
+        // var f3 = function (filtered2) {
+        //   console.log(filtered2);
+        //   if (category == undefined) return filtered2;
+        //   else
+        //   return  _.filter(filtered2, function (key)
+        //                {
+        //                    try {return _.includes(key["categories"], category)}
+        //                    catch (err) {return false}
+        //               });
+        // }
+        // var f4 = function (filtered3) {
+        //    console.log(filtered3);
+        //    if (ambience == undefined) return filtered3;
+        //     return _.filter(filtered3,
+        //            function (key)
+        //                {
+        //                    try {return key["attributes"]["Ambience"][ambience] == true}
+        //                    catch (err) {return false}
+        //                });
+        // }
+        //var flowfunc = _.flow(f1, name,f2,f3,f4);
+              
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
