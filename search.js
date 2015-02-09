@@ -2,6 +2,7 @@ var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
+var _ = require('lodash')
 
 module.exports = function(app) {
 
@@ -14,7 +15,8 @@ module.exports = function(app) {
 
 
         // TODO: lookup restaurants whose names contain the given keyword
-        var rs = [restaurants[6], restaurants[10]] // hardcoded for 'Pizza'
+        var rs = _.filter(restaurants, 
+            function (key) {return key.name.indexOf(keyword) != -1});
 
         res.render('listRestaurants.jade', {
             restaurants: rs
@@ -23,9 +25,15 @@ module.exports = function(app) {
 
     app.get('/search/restaurants/good/for/:x', function(req, res) {
         var x = req.params.x
+        console.log(x);
 
         // TODO: lookup restaurants good for  :x
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
+        var rs = _.filter(restaurants,
+            function (key) 
+                {   
+                    try {return key["attributes"]["Good For"][x] == true}
+                    catch (err) {return false}
+                });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
@@ -36,7 +44,12 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants has ambience of :x
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
+        var rs = _.filter(restaurants,
+                    function (key)
+                        {
+                            try {return key["attributes"]["Ambience"][x] == true}
+                            catch (err) {return false}
+                        });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
@@ -47,7 +60,12 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants belonging to category :x
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
+        var rs = _.filter(restaurants,
+                    function (key)
+                        {
+                            try {return _.includes(key["categories"], x)}
+                            catch (err) {return false}
+                        });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
@@ -59,11 +77,22 @@ module.exports = function(app) {
         var number = req.params.number
         var relationship = req.params.relationship
 
-        // TODO: lookup restaurants with starts higher or lower than :number
-        var rs = [restaurants[1], restaurants[2], restaurants[3]] // hardcoded fake results
+       // TODO: lookup restaurants with starts higher or lower than :number
+       var rs = _.filter(restaurants,
+                function (key)
+                    {
+                        try {
+                            if (relationship == "above")
+                                return key.stars > number;
+                            else
+                                return key.stars < number;
+                            }
+                        catch (err) {return false;}
+                    });
+
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: rs 
         })
     })
 
