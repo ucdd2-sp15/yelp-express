@@ -76,7 +76,13 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
+<<<<<<< HEAD
 var server = app.listen((process.env.PORT || 3000), function() {
+=======
+require('./mongo')(app)
+
+var server = app.listen(3000, function() {
+>>>>>>> 42d6201d58294a261199d106c7a9cfeb5aceb5fc
 
     var host = server.address().address
     var port = server.address().port
