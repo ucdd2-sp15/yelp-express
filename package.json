@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "^4.11.2",
     "jade": "^1.9.1",
-    "lodash": "^3.1.0"
+    "lodash": "^3.1.0",
+    "monk": "^0.9.1"
   },
   "engines": {
     "node": "0.13.x",
