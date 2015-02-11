@@ -77,7 +77,9 @@ var plugin = require('./search')
 plugin(app)
 
 var server = app.listen(process.env.PORT || 3000, function() {
+require('./mongo')(app)
 
+var server = app.listen(3000, function() {
     var host = server.address().address
     var port = server.address().port
 
