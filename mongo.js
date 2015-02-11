@@ -19,8 +19,9 @@ app.use(express.static(__dirname + '/public'));
 
 require('./mongo/doctorList')(app)
 require('./mongo/doctorView')(app)
-//require('./mongo/restaurantList')(app)
-//require('./mongo/restaurantView')(app)
+require('./mongo/restaurantList')(app)
+require('./mongo/restaurantView')(app)
+require('./mongo/userList')(app)
 
 var server = app.listen(3000, function() {
 
