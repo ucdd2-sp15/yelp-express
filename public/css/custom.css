@@ -18,3 +18,30 @@ img {
 	border: 1px #aaa solid;
 	padding: 2px;
 }
+
+th{
+	background-color: #fff;
+}
+
+tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+div.row:nth-child(even) {
+    background-color: #ddd;
+}
+
+div.row{
+	padding: 13px 0px;
+}
+
+div.row:first-child{
+	padding: 12px 0px;
+}
+
+.paddedBig {
+	padding-left: 250px;
+}
+.paddedSmall {
+	padding-left: 150px;
+}

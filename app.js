@@ -39,33 +39,42 @@ app.get('/list/tips', function(req, res) {
 })
 
 app.get('/view/user/:user_id', function(req, res) {
-    // TODO: lookup a user by a user_id
-    // hint: use lodash's find function to look up a user by user_id
-    var user = users[0]
+    var object={'user_id': req.params.user_id}
+    var user= _.find(users, object)
     res.render('viewUser.jade', {
         user: user
     })
 })
 
 app.get('/view/restaurant/:business_id', function(req, res) {
-    // TODO: lookup a restaurant by a business_id
-    var restaurant = restaurants[0]
+    var object={'business_id': req.params.business_id}
+    var restaurant = _.find(restaurants, object)
     res.render('viewRestaurant.jade', {
         restaurant: restaurant
     })
 })
 
 app.get('/view/doctor/:business_id', function(req, res) {
-    // TODO: lookup a doctor by a business_id
-    var doctor = doctors[0]
+    var object={'business_id': req.params.business_id}
+    var doctor = _.find(doctors, object)
     res.render('viewDoctor.jade', {
         doctor: doctor
     })
 })
 
 app.get('/view/tip/:business_id/:user_id', function(req, res) {
-    // TODO: lookup a tip by both the business_id and the user_id
-    var tip = tips[0]
+    var tip = _.find(tips,{'business_id':req.params.business_id, 'user_id':req.params.user_id})
+    var restaurant = _.find(restaurants,{'business_id':req.params.business_id})
+    var user = _.find(users,{'user_id':req.params.user_id})
+    tip['business_name'] = restaurant.name
+    if (typeof(user) !== 'undefined')
+    {
+        tip['name'] = user.name
+    }
+    else
+    {
+        tip['name'] = 'No User Name Given'
+    }
     res.render('viewTip.jade', {
         tip: tip
     })

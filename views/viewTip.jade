@@ -2,10 +2,13 @@ extends layout
 
 // TODO: use the better template from the hackathon
 block content
-    - var item = tip
-    div.row
-        div.one.column Tip
-        div.elevent.columns= item.text
-    div.row
-        div.one.column By
-        div.four.column= item.user_id
+	- var item = tip
+	div.four.columns #{item.business_name}
+	div#example-grid
+		div.eight.columns= item.text 
+			br
+			span.paddedBig - #{item.name}
+			br
+			span.paddedBig #{item.date}
+			span.paddedSmall likes #{item.likes}
+
