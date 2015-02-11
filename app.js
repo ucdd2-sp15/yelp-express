@@ -90,6 +90,8 @@ app.get('/view/tip/:business_id/:user_id', function(req, res) {
 var plugin = require('./search')
 plugin(app)
 
+require('./mongo')(app)
+
 var server = app.listen(3000, function() {
 
     var host = server.address().address
