@@ -1,13 +1,44 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
-    each item in doctors
-        div.row
-            div.eight.columns
-                // TODO: fix the hardcoded link
-                a(href='/view/doctor/vcNAWiLM4dR7D2nwwJ7nCA')
-                    = item.name
-            div.four.columns
-                if (item.attributes["By Appointment Only"])
-                    | By Appointment Only
+	each item, i in doctors
+		div.row(style="background-color: "+(i%2==0?"silver":"white"))
+			div.twelve.columns
+				div.row
+					div.two.columns
+						img(src='/public/images/house.jpg')
+					div.six.columns
+						a(href='/view/doctor/'+item.business_id)
+							= item.name
+					div.four.columns
+						p
+							= item.stars + '/5'
+				div.row
+					div.one.column
+					div.five.columns
+						p
+							= item.full_address
+					div.six.columns
+						if (item.attributes["By Appointment Only"])
+							| By Appointment Only
+						else
+							| Walk-in
+				div.row
+					div.two.columns
+						p
+					div.five.columns
+						each category in item.categories
+							p
+								= category
+					div.five.columns
+						each day, dayName in item.hours
+							p
+								= dayName
+								| 
+								= day.open 
+								|-
+								= day.close
+								| 
+								br
+
+

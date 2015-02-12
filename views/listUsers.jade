@@ -1,8 +1,21 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
-    each item in users
-        div.row
-            a(href='/view/user/' + item.user_id)
-                = item.name
+	- var i = 0
+	while i < users.length
+		div.row
+			- var endInd = i + 2
+			while i < endInd && i < users.length
+				div.six.columns.usercell
+					- var item = users[i]
+					div.six.columns
+					
+				
+						img(src='/public/images/sampleperson.gif' height='42' width='42').vcenter
+						a( href='/view/user/' + item.user_id style="position: relative; bottom: 18px; left:20px;")
+							= item.name
+				
+					div(style="position: relative; top: 10px;").six.columns
+						font(size ='1')&nbsp;&nbsp;Yelping since: #{item.yelping_since} Rating: #{item.average_stars}
+					- i = i + 1
+		br

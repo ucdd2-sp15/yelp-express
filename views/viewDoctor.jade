@@ -1,11 +1,46 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = doctor
-    h3= item.name
-    div.row
-        div.one.column city
-        div.three.columns= item.city
-        div.one.column state
-        div.three.columns= item.state
+	// display the detail of the first item
+	- var item = doctor
+	h3= item.name
+	div.row
+		div.two.columns
+			img(src='/public/images/house.jpg')
+		div.six.columns
+			a(href='/view/doctor/'+item.business_id)
+				= item.name
+		div.four.columns
+			p
+				= item.stars + '/5'
+	div.row
+		div.one.column
+		div.five.columns
+			p
+				= item.full_address
+		div.six.columns
+			if (item.attributes["By Appointment Only"])
+				| By Appointment Only
+			else
+				| Walk-in
+	div.row
+		div.two.columns
+			p
+		div.five.columns
+			each category in item.categories
+				p
+					= category
+				div.five.columns
+					each day, dayName in item.hours
+						p
+							= dayName
+							| 
+							= day.open 
+							|-
+							= day.close
+							| 
+							br
+	div.row
+		div.four.columns
+			p
+				= " Number of reviews:" + item.review_count
