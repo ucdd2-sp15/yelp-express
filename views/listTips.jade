@@ -1,9 +1,20 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
+    hr
     each item in tips
         div.row
-            // TODO: fix the hardcoded link
-            a(href='/view/tip/JwUE5GmEO-sH1FuwJgKBlQ/Vefj29mjork1DLhALLNAsg/')
-                = item.text
+            div.eight.columns
+                img(src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802.jpg?s=80").vcenter
+                = item.user_id
+            div.two.columns
+                = "likes: " + item.likes
+            div.two.columns
+                = item.date
+        div.row
+            div.eight.columns
+                a(href='/view/tip/' + item.business_id + '/' + item.user_id)
+                    blockquote= item.text
+            div.four.columns
+                = "Place: " + item.business_id
+        hr
