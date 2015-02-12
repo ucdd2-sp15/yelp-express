@@ -5,8 +5,9 @@ var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
 
-module.exports = function(app) {
+var _ = require('lodash')
 
+module.exports = function(app) {
 
 	app.get('/search', function(req, res) {
 		res.render('search')
