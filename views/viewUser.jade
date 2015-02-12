@@ -1,8 +1,37 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = user
-    h3= item.name
-    div.row
-        div.three.columns= item.name
+	- var item = user
+	br
+	br
+	div#example-grid
+		div.row
+			div.three.columns 
+				img(src='/images/user_view.png')
+			br
+			h3(style='text-align: center')= item.name
+	
+			div.nine.columns(style='text-align: center')
+				div.row
+					div.six.columns 
+						b Yelping Since 
+					div.six.columns
+						=item.yelping_since
+				div.row
+					div.six.columns(style='color: red')
+						b Votes 
+					div.two.columns(style='color: green')
+						='Funny: '+item.votes.funny
+					div.two.columns(style='color: green')
+						='Useful: '+item.votes.useful
+					div.two.columns(style='color: green')
+						='Cool: '+item.votes.cool
+				div.row
+					div.three.columns
+						b Review Count  
+					div.three.columns
+						=item.review_count
+					div.three.columns
+						b Average Stars 
+					div.three.columns
+						=item.average_stars
