@@ -40,14 +40,3 @@ block content
 								= day.close
 								| 
 								br
-
-    each item in doctors
-        div.row
-            div.eight.columns
-                // TODO: fix the hardcoded link
-                a(href='/view/doctor/' + item.business_id)
-                    = item.name
-            div.four.columns
-                if (item.attributes["By Appointment Only"])
-                    | By Appointment Only
-
