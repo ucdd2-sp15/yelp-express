@@ -1,70 +1,10 @@
-var _ = require('lodash')
-
 var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
-
-var _ = require('lodash')
+var _ = require('lodash');
 
 module.exports = function(app) {
-    var getRestaurantsWithName = function (restaurants, name) {
-        return _.filter(restaurants, function(restaurant) {
-            return (restaurant.name.indexOf(name) > -1);
-        });
-    };
-
-    var getRestaurantsGoodFor = function (restaurants, x) {
-        return _.filter(restaurants, function (restaurant) {
-            if (restaurant.attributes.hasOwnProperty("Good For")) {
-                return restaurant.attributes["Good For"][x];
-            } else {
-                return false;
-            }
-        });
-    };
-
-    var getRestaurantsWithAmbience = function (restaurants, x) {
-        return _.filter(restaurants, function (restaurant) {
-            if (restaurant.attributes.hasOwnProperty("Ambience")) {
-                return restaurant.attributes["Ambience"][x];
-            } else {
-                return false;
-            }
-        });
-    };
-
-    var getRestaurantsWithCategories = function (restaurants, x) {
-        return _.filter(restaurants, function (restaurant) {
-            if (restaurant.hasOwnProperty("categories")) {
-                return restaurant["categories"].indexOf(x.replace("-", " ")) > -1;
-            } else {
-                return false;
-            }
-        });
-    };
-
-    var getRestaurantsWithRelationshipToNumber = function (restaurants, relationship, number) {
-        return _.filter(restaurants, function (restaurant) {
-            if (restaurant.hasOwnProperty("stars")) {
-                if (relationship == "above") {
-                    return restaurant.stars >= number;
-                } else if (relationship == "below") {
-                    return restaurant.stars <= number;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        });
-    };
-
-    var getRestaurantsWithMinStars = function (restaurants, minStars) {
-        return _.filter(restaurants, function (restaurant) {
-                return (restaurant.stars >= minStars);
-            });
-    }
 
     app.get('/search', function(req, res) {
         res.render('search')
@@ -72,52 +12,67 @@ module.exports = function(app) {
 
     app.get('/search/restaurants/name/has/:keyword', function(req, res) {
         var keyword = req.params.keyword
-
-        var rs = getRestaurantsWithName(restaurants, keyword);
+        
+        var result = _.filter(restaurants, function(x) { return _.contains(x.name, keyword); });
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
     })
 
     app.get('/search/restaurants/good/for/:x', function(req, res) {
-        var x = req.params.x
+        var keyword = req.params.x
 
-        var rs = getRestaurantsGoodFor(restaurants, x);
+        var result = _.filter(restaurants, function(x) { 
+            
+            return (x["attributes"]["Good For"] ? x["attributes"]["Good For"][keyword] : false);
+            
+        });
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
     })
 
     app.get('/search/restaurants/ambience/is/:x', function(req, res) {
-        var x = req.params.x
+        var keyword = req.params.x;
 
-        var rs = getRestaurantsWithAmbience(restaurants, x);
+        var result = _.filter(restaurants, function(x) { 
+            
+            return (x["attributes"]["Ambience"] ? x["attributes"]["Ambience"][keyword] : false);
+            
+        });
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
     })    
 
     app.get('/search/restaurants/category/is/:x', function(req, res) {
-        var x = req.params.x
+        var keyword = req.params.x.replace("-", " ");
 
-        var rs = getRestaurantsWithCategories(restaurants, x);
+        var result = _.filter(restaurants, function(x) { return _.contains(x.categories, keyword); } );
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
     })    
+
 
     app.get('/search/restaurants/stars/:relationship/:number', function(req, res) {
         var number = req.params.number
         var relationship = req.params.relationship
+        var predicateFunction;
+        
+        if(relationship == "above")
+            predicateFunction = function(x) { return x.stars >= number };
+        else
+            predicateFunction = function(x) { return x.stars <= number };
 
-        var rs = getRestaurantsWithRelationshipToNumber(restaurants, relationship, number);
+        var result = _.filter(restaurants, predicateFunction);
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
     })
 
@@ -126,26 +81,42 @@ module.exports = function(app) {
         var name = req.query.name
         var minStars = req.query.minStars
         var category = req.query.category
-        var ambience = req.query.ambience    
+        var ambience = req.query.ambience
         
-        console.log('req.query: ', req.query)
-
-        var rs = restaurants;
-        if (name) {
-            rs = getRestaurantsWithName(rs, name);
+        var result = restaurants;
+        
+        if(name) {
+            
+            result = _.filter(result, function(x) { return _.contains(x.name, name); });
+            
         }
-        if (minStars) {
-            rs = getRestaurantsWithMinStars(rs, minStars);
+        
+        if(minStars) {
+            
+            result = _.filter(result, function(x) { return x.stars <= minStars; });
+            
         }
-        if (category) {
-            rs = getRestaurantsWithCategories(rs, category);
+        
+        if(category) {
+            
+            result = _.filter(result, function(x) { return _.contains(x.categories, category); } );
         }
-        if (ambience) {
-            rs = getRestaurantsWithAmbience(rs, ambience);
+        
+        if(ambience) {
+            
+            result = _.filter(result, function(x) { 
+            
+            return (x["attributes"]["Ambience"] ? x["attributes"]["Ambience"][ambience] : false);
+            
+        });
+            
         }
+        
+        console.log('req.query: ', req.query)    
 
         res.render('listRestaurants.jade', {
-            restaurants: rs
+            restaurants: result
         })
-    })
+    })    
+
 }
