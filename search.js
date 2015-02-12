@@ -1,8 +1,26 @@
+//Authored by - Tanvi Parikh
+
 var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
 var _ = require('lodash');
+
+var _ = require('lodash')
+
+// underscore.js functions used in coding this Assignment-
+//
+// >> ._filter():
+// Looks through each value in the list, returning an array of all the values that pass a truth test (predicate).
+// Eg: var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+// => [2, 4, 6]
+//
+// >> ._contains():
+// Returns true if the value is present in the list. Uses indexOf internally, if list is an Array.
+// _.contains([1, 2, 3], 3);
+// => true
+//
+// 
 
 module.exports = function(app) {
 
@@ -21,6 +39,7 @@ module.exports = function(app) {
         })
     })
 
+	//Function 2 completed
     app.get('/search/restaurants/good/for/:x', function(req, res) {
         var x = req.params.x
 
@@ -35,6 +54,7 @@ module.exports = function(app) {
         })
     })
 
+	//Function 3 completed
     app.get('/search/restaurants/ambience/is/:x', function(req, res) {
         var x = req.params.x
 
@@ -49,6 +69,7 @@ module.exports = function(app) {
         })
     })
 
+	//Function 4 completed
     app.get('/search/restaurants/category/is/:x', function(req, res) {
         var x = req.params.x
         // Fix misalign of fast-food
@@ -56,13 +77,13 @@ module.exports = function(app) {
         var rs = _.filter(restaurants, function(r){
             if (_.contains(r.categories, x)) return true;
         })
-
+						})
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
     })
 
-
+	//Function 5 completed
     app.get('/search/restaurants/stars/:relationship/:number', function(req, res) {
         var number = req.params.number
         var relationship = req.params.relationship
@@ -81,6 +102,7 @@ module.exports = function(app) {
         })
     })
 
+	//Function 6 completed
     app.get('/search/restaurants/q', function(req, res) {
 
         var name = req.query.name
@@ -117,6 +139,7 @@ module.exports = function(app) {
                 }
             })
         }
+>>>>>>> 98e82dfb912bb573a30ad7204da3cd0ecf3cbc31
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
