@@ -1,8 +1,23 @@
+
 var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
 var _ = require('lodash')
+
+// underscore.js functions used in coding this Assignment-
+//
+// >> ._filter():
+// Looks through each value in the list, returning an array of all the values that pass a truth test (predicate).
+// Eg: var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+// => [2, 4, 6]
+//
+// >> ._contains():
+// Returns true if the value is present in the list. Uses indexOf internally, if list is an Array.
+// _.contains([1, 2, 3], 3);
+// => true
+//
+//
 
 module.exports = function(app) {
 
@@ -26,6 +41,7 @@ module.exports = function(app) {
         });
     })
 
+	//Function 2 completed
     app.get('/search/restaurants/good/for/:x', function(req, res) {
         var x = req.params.x
 
@@ -35,13 +51,14 @@ module.exports = function(app) {
                 //     console.log(n.name);
                 return (n.attributes["Good For"][x] == true);
             }
-        });        
+        });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
     })
 
+	//Function 3 completed
     app.get('/search/restaurants/ambience/is/:x', function(req, res) {
         var x = req.params.x
 
@@ -51,32 +68,28 @@ module.exports = function(app) {
                 //     console.log(n.name);
                 return (n.attributes["Ambience"][x] == true);
             }
-        });    
+        });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
+    })
 
+	//Function 4 completed
     app.get('/search/restaurants/category/is/:x', function(req, res) {
         var x = req.params.x
-
-        if(x == 'Fast-Food')
-            x = 'Fast Food';
-
-        var rs = _.filter(restaurants, function(n){
-            if(n.categories != undefined){
-                // if(_.includes(n.categories, x)) //test
-                //     console.log(n.name);
-                return (_.includes(n.categories, x));
-            }
-        });    
-
+        // Fix misalign of fast-food
+        if (x == 'Fast-Food') x = 'Fast Food';
+        var rs = _.filter(restaurants, function(r){
+            if (_.contains(r.categories, x)) return true;
+        })
+						})
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
+    })
 
+	//Function 5 completed
     app.get('/search/restaurants/stars/:relationship/:number', function(req, res) {
         var number = req.params.number
         var relationship = req.params.relationship
@@ -89,16 +102,17 @@ module.exports = function(app) {
                 }
                 if(relationship == 'above'){
                     if(n.stars >= number)
-                        return true;                
+                        return true;
                 }
             }
-        });           
+        });
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
     })
 
+	//Function 6 completed
     app.get('/search/restaurants/q', function(req, res) {
         var name = req.query.name
         var minStars = req.query.minStars
@@ -123,9 +137,9 @@ module.exports = function(app) {
             rs = _.filter(rs, function(n){
                 if(n.stars != undefined){
                     if(n.stars >= minStars)
-                        return true;                
+                        return true;
                 }
-            });             
+            });
         }
 
         if(category){
@@ -133,7 +147,7 @@ module.exports = function(app) {
                 if(n.categories != undefined){
                     return (_.includes(n.categories, category));
                 }
-            });               
+            });
         }
 
         if(ambience){
@@ -141,9 +155,8 @@ module.exports = function(app) {
                 if(n.attributes["Ambience"] != undefined){
                     return (n.attributes["Ambience"][ambience] == true);
                 }
-            });               
+            });
         }
-
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
