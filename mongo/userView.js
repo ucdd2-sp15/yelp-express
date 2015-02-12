@@ -5,7 +5,7 @@ module.exports = function(app) {
 
         // get the user collection
         var users = app.db.get('user')
-        console.log(users)
+        //console.log(users)
          var q = {
             'user_id': req.params.user_id            
         }

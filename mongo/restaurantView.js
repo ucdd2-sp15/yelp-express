@@ -1,7 +1,7 @@
 module.exports = function(app) {
 
     app.get('/view/restaurant/:business_id', function(req, res) {
-        console.log(req)
+        //console.log(req)
         // get the business collection
         var business = app.db.get('business')
 
