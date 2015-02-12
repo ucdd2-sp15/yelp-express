@@ -1,5 +1,4 @@
 module.exports = function(app) {
-
     app.get('/view/restaurant/:business_id', function(req, res) {
 
         // get the business collection
@@ -17,5 +16,4 @@ module.exports = function(app) {
         })
 
     })
-    
 }

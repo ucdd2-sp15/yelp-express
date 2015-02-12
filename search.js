@@ -1,3 +1,5 @@
+var _ = require('lodash')
+
 var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
@@ -6,7 +8,6 @@ var tips = require('./data/tips.json')
 var _ = require('lodash')
 
 module.exports = function(app) {
-
     var getRestaurantsWithName = function (restaurants, name) {
         return _.filter(restaurants, function(restaurant) {
             return (restaurant.name.indexOf(name) > -1);
@@ -146,6 +147,5 @@ module.exports = function(app) {
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
-
+    })
 }
