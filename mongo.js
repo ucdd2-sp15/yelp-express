@@ -21,6 +21,8 @@ require('./mongo/doctorList')(app)
 require('./mongo/doctorView')(app)
 require('./mongo/restaurantList')(app)
 require('./mongo/restaurantView')(app)
+require('./mongo/userList')(app)
+require('./mongo/userView')(app)
 
 var server = app.listen(3000, function() {
 
