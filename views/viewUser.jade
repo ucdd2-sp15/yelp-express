@@ -1,8 +1,48 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
+
     - var item = user
-    h3= item.name
-    div.row
-        div.three.columns= item.name
+
+    div.blue-container
+
+        div.row
+
+            div.four.columns(align='center')
+
+                br
+                img( height='200' width='200' src='http://thecontentwrangler.com/wp-content/uploads/2011/08/User.png')
+
+            div.six.columns
+
+
+
+                h4= item.name
+
+                b Yelping since:
+                h6= item.yelping_since
+                b Average stars:
+                h6= item.average_stars
+                b Review counts:
+                h6= item.review_count
+
+
+
+        div.row
+            h5.inline Photos:
+
+            div.ten.column
+
+                img(height='50' width='50' src='http://thecontentwrangler.com/wp-content/uploads/2011/08/User.png')
+                img(height='50' width='50' src='http://thecontentwrangler.com/wp-content/uploads/2011/08/User.png')
+                img(height='50' width='50' src='http://thecontentwrangler.com/wp-content/uploads/2011/08/User.png')
+                img(height='50' width='50' src='http://thecontentwrangler.com/wp-content/uploads/2011/08/User.png')
+
+
+        div.row
+            if item.friends[0]
+                h5.inline Friends:
+                div.six.column
+                    = item.friends
+            else
+                no 
