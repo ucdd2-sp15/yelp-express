@@ -1,14 +1,26 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
-    each item in restaurants   
-        div.row
-            div.eight.columns
-                // TODO: fix the hardcoded link
-                a(href='/view/restaurant/JwUE5GmEO-sH1FuwJgKBlQ')
-                    = item.name
-            div.four.columns
-                = item.stars
-                |  stars
-
+	div.blue-container
+		div.white-container
+			table.u-full-width
+				thead
+					tr
+						th Name
+						th State
+						th City
+						th Rating
+						th Open
+				tbody
+				each item in restaurants
+					tr
+						td
+							a(href='/view/restaurant/'+ item.business_id)
+								= item.name
+						td= item.state
+						td= item.city
+						td= item.stars + " Stars"
+						if item.open
+							td= "Open"
+						else
+							td= "Closed"

@@ -2,7 +2,8 @@ var doctors = require('./data/doctors.json')
 var restaurants = require('./data/restaurants.json')
 var users = require('./data/users.json')
 var tips = require('./data/tips.json')
-var _ = require('lodash');
+
+var _ = require('lodash')
 
 module.exports = function(app) {
 
@@ -15,10 +16,10 @@ module.exports = function(app) {
 
 
         // TODO: lookup restaurants whose names contain the given keyword
-        var rs = _.filter(restaurants, function(n){
-            return _.contains(n.name,keyword);
+        var rs = _.filter(restaurants, function(n) {
+            return _.includes(n.name, keyword)
         })
-        
+
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
@@ -28,10 +29,9 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants good for  :x
-        var rs = _.filter(restaurants, function(n){
-            if(n.attributes['Good For']){
-                if(n.attributes['Good For'][x])
-                    return n;
+        var rs = _.filter(restaurants, function(n) {
+            if (n.attributes["Good For"]) {
+                return n.attributes["Good For"][x]
             }
         })
 
@@ -44,44 +44,43 @@ module.exports = function(app) {
         var x = req.params.x
 
         // TODO: lookup restaurants has ambience of :x
-        var rs = _.filter(restaurants, function(n){
-            if(n.attributes['Ambience']){
-                if(n.attributes['Ambience'][x])
-                    return n;
+        var rs = _.filter(restaurants, function(n) {
+            if (n.attributes["Ambience"]) {
+                return n.attributes["Ambience"][x]
             }
         })
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
+    })
 
     app.get('/search/restaurants/category/is/:x', function(req, res) {
         var x = req.params.x
-
-        if (x == "Fast-Food")
-            x = "Fast Food"
+        x = x.replace("-", " ")
 
         // TODO: lookup restaurants belonging to category :x
-        var rs = _.filter(restaurants, function(n){
-            if (_.contains(n.categories, x)) 
-                return n;
+        var rs = _.filter(restaurants, function(n) {
+            return _.contains(n.categories, x)
         })
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
+    })
 
 
     app.get('/search/restaurants/stars/:relationship/:number', function(req, res) {
         var number = req.params.number
         var relationship = req.params.relationship
+        var test
+        relationship == "above" ?
+            test = function(stars, n) { return stars >= n } :
+            test = function(stars, n) { return stars <= n }
 
         // TODO: lookup restaurants with starts higher or lower than :number
-        var rs = _.filter(restaurants, function(n){
-            if ((relationship == "above" && n.stars >= number) || (relationship == "below" && n.stars <= number)) 
-                return n;
+        var rs = _.filter(restaurants, function(n) {
+            return test(n.stars, number)
         })
 
         res.render('listRestaurants.jade', {
@@ -90,49 +89,45 @@ module.exports = function(app) {
     })
 
     app.get('/search/restaurants/q', function(req, res) {
-                
+
         var name = req.query.name
         var minStars = req.query.minStars
         var category = req.query.category
-        var ambience = req.query.ambience    
-        
-        console.log('req.query: ', req.query)    
-        
+        var ambience = req.query.ambience
+
+        var nameFunc = function(keyword, n) {
+            if (!keyword) return true
+            return _.includes(n.name, keyword)
+        }
+
+        var minStarsFunc = function(minStars, n) {
+            if (!minStars) return true
+            return minStars <= n.stars
+        }
+
+        var categoryFunc = function(x, n) {
+            if (!x) return true
+            return _.contains(n.categories, x)
+        }
+
+        var ambienceFunc = function(x, n) {
+            if (!x) return true
+            if (n.attributes["Ambience"]) {
+                return n.attributes["Ambience"][x]
+            }
+            return false
+        }
+
+        console.log('req.query: ', req.query)
+
         // // TODO: lookup restaurants with the given query parameters
-        if (name){
-            var rsn = _.filter(restaurants, function(n){
-                if(_.contains(n.name,name))
-                    return n;
-            })
-        }
-
-        if (minStars){
-            var rss = _.filter(restaurants, function(n){
-                if(minStars <= n.stars)
-                    return n;
-            })
-        }
-
-        if (category){
-            var rsc = _.filter(restaurants, function(n){
-                if(_.contains(n.categories, category))
-                        return n;
-            })
-        }
-
-        if (ambience){
-            var rsa = _.filter(restaurants, function(n){ 
-                if(n.attributes['Ambience'])
-                    if(n.attributes['Ambience'][ambience])
-                        return n;
-            })
-        }
-
-        var rs = _.intersection(rsn,rss,rsc,rsa)
+        var rs = _.filter(restaurants, function(n) {
+            return nameFunc(name, n) && minStarsFunc(minStars, n) && categoryFunc(category, n) && ambienceFunc(ambience, n)
+        })
 
         res.render('listRestaurants.jade', {
             restaurants: rs
         })
-    })    
+    })
 
 }

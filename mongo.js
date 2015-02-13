@@ -21,8 +21,12 @@ require('./mongo/doctorList')(app)
 require('./mongo/doctorView')(app)
 require('./mongo/restaurantList')(app)
 require('./mongo/restaurantView')(app)
+require('./mongo/userList')(app)
+require('./mongo/userView')(app)
 
-var server = app.listen(3000, function() {
+app.set('port', (process.env.PORT || 3000))
+
+var server = app.listen(app.get('port'), function() {
 
     var host = server.address().address
     var port = server.address().port
