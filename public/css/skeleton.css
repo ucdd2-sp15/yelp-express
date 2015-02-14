@@ -112,6 +112,19 @@
 
 }
 
+  .onerow                         { height: 30px; }
+  .onecell, .indonecell           { min-height: 300px; background-color: #F0F0F0; display: inline-block !important;
+                                  margin: 8px; border: 1px solid #52FF57; border-radius: 10px; }
+  .namepiece                      { display: inline-block; width: 50%; padding-top: 10px; padding-left: 10px; }
+  .starpiece                      { display: inline-block; float: right; margin-top: -25px; padding-right: 10px; }
+  .hourpiece, .addresspiece       { display: block; padding-top: 5px; padding-left: 10px; }
+  .addresspiece                   { color: #DB0000; }
+
+  .indnamepiece                   { display: inline-block; width: 50%; padding-top: 10px; padding-left: 10px; }
+  .openpiece                      { display: block; padding-top: 5px; padding-left: 10px; color: purple; }
+  .indonecell                     { min-height: 450px; }
+  .reviewpiece                    { display: block; padding-top: 5px; padding-left: 10px; color: green; }   
+
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
