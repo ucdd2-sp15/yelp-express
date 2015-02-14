@@ -19,10 +19,12 @@ app.use(express.static(__dirname + '/public'));
 
 require('./mongo/doctorList')(app)
 require('./mongo/doctorView')(app)
+require('./mongo/userList')(app)
+require('./mongo/userView')(app)
 require('./mongo/restaurantList')(app)
 require('./mongo/restaurantView')(app)
 
-var server = app.listen(3000, function() {
+var server = app.listen((process.env.PORT || 3000), function() {
 
     var host = server.address().address
     var port = server.address().port

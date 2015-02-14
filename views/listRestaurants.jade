@@ -2,13 +2,26 @@ extends layout.jade
 
 // TODO: use the better template from the hackathon
 block content
-    each item in restaurants   
+  div#example-grid    
+    div.row(style='font-family:Comic Sans MS;font-size:150%')
+            div.three.columns
+                | Restaurant Name
+            div.one.columns
+                | State
+            div.three.columns
+                | Type
+            div.four.columns
+                | Review
+
+    each item in restaurants  
         div.row
-            div.eight.columns
-                // TODO: fix the hardcoded link
-                a(href='/view/restaurant/JwUE5GmEO-sH1FuwJgKBlQ')
+            div.three.columns
+                a(href='/view/restaurant/'+item.business_id)
                     = item.name
+            div.one.columns
+                = item.state
+            div.three.columns
+                = item.type
             div.four.columns
                 = item.stars
                 |  stars
-
