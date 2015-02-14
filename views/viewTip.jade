@@ -1,11 +1,20 @@
 extends layout
 
-// TODO: use the better template from the hackathon
 block content
-    - var item = tip
-    div.row
-        div.one.column Tip
-        div.elevent.columns= item.text
-    div.row
-        div.one.column By
-        div.four.column= item.user_id
+	- var item = tip
+	br
+	br
+	div#example-grid
+		div.twelve.columns(style='text-align: center')
+			div.row
+				div.twelve.columns
+					h5=item.text
+			div.row
+				div.two.columns(style='color: red')
+					b Date
+				div.four.columns
+					=item.date
+				div.two.columns(style='color: green')
+					b User Id
+				div.four.columns
+					=item.user_id

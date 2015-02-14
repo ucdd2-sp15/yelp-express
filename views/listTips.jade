@@ -1,9 +1,15 @@
 extends layout.jade
 
-// TODO: use the better template from the hackathon
 block content
-    each item in tips
-        div.row
-            // TODO: fix the hardcoded link
-            a(href='/view/tip/JwUE5GmEO-sH1FuwJgKBlQ/Vefj29mjork1DLhALLNAsg/')
-                = item.text
+	div.row
+		div.five.columns
+			br
+		div.six.columns
+			br
+			h3="Tips"
+	each item in tips
+		div.row     
+			a(href='/view/tip/'+item.business_id+'/'+item.user_id)
+				= item.text
+
+
